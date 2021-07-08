@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!-- Страница с кнопкой переключения -->
+<html lang="ru">
+    <head>
+        <link rel="stylesheet" href="../../assets/css/main.css">
+        <link rel="stylesheet" href="./toggler.css">
+        <style>
+          body {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-end;
+            max-width: 350px;
+            height: auto;
+            margin: 0 auto;
+          }
+          
+          .toggler-group {
+            display: flex;
+            flex-direction: column;
+          }
+
+          .toggler-group__item + .toggler-group__item {
+             margin-top: 16px;
+          }
+        </style>
+    </head>
+    <body>
+      <div class="toggler-group">
+      <label class="toggler  toggler-group__item">
+        <input class="toggler__input " type="checkbox" tabindex="">
+        <div class="toggler__state">
+          <div class="toggler__control">
+            <div class="toggler__icon">
+            </div>
+          </div>
+          <div class="toggler__title">Off</div>
+        </div>
+      </label>
+      <label class="toggler  toggler-group__item">
+        <input class="toggler__input" type="checkbox" tabindex="">
+        <div class="toggler__state">
+          <div class="toggler__control">
+            <div class="toggler__icon">
+            </div>
+          </div>
+          <div class="toggler__title toggler-group__item">On</div>
+        </div>
+      </label>
+      <label class="toggler toggler--disabled">
+        <input class="toggler__input" type="checkbox" disabled>
+        <div class="toggler__state">
+          <div class="toggler__control">
+            <div class="toggler__icon">
+            </div>
+          </div>
+          <div class="toggler__title">Disabled</div>
+        </div>
+      </label>
+    </div>
+      
+    </body>
+</html>

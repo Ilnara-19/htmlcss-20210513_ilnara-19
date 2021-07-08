@@ -1,0 +1,4 @@
+/* Стилизация главного блока */
+.main {
+  background-color: var(--white);
+}
