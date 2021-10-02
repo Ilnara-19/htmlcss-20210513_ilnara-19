@@ -21,7 +21,6 @@
 }
 
 .btn--preview {
-  width: 40%;
   padding: 7px 10px;
 }
 
@@ -64,5 +63,14 @@
   opacity: 50%;
   pointer-events: none;
   cursor: default;
+}
+
+/* Media query */
+
+@media (max-width: 768px) {
+
+  .btn--small {
+    width: auto;
+  }
 }
 

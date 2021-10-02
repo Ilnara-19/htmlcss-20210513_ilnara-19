@@ -1,27 +1,21 @@
 /* Стилизация мобильного меню */
 .burger {
-  display: flex;
   flex-direction: column;
-  width: 100vw;
-  min-height: 100vh;
-  padding: 16px;
-  background-color: var(--grey-5);
-  
-  position: fixed;
+  display: none;
 }
 
 .burger__icon {
  width: 24px;
  height: 24px;
  cursor: pointer;
+ color: var(--grey-4);
+}
+
+.burger__icon.burger__icon--black{
+  color: var(--icon-color-menu);
 }
 
 .burger__icon-close {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  z-index: 1;
-
   display: none;
 }
 
@@ -40,11 +34,24 @@
 }
 
 .burger__menu {
-  display: none;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2000;
+  padding: 0 15px;
+  background-color: var(--white-bg);
+  transform: translateX(-100vw);
+  transition: transform 200ms ease-in-out;
+}
+
+.burger__menu--grey {
+background-color: var(--main-bg);
 }
 
 .burger__menu[data-open] {
-  display: block;
+  transform: translateX(0);
 }
 
 .burger__night-theme {
@@ -58,4 +65,11 @@
   font-size: 16px;
   line-height: 1.2;
   color: var(--grey-4);
+}
+
+@media (max-width: 768px) {
+ 
+  .burger {
+    display: block;
+  }
 }

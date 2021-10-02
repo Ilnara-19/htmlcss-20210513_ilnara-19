@@ -1,4 +1,8 @@
 /* Стилизация табов */
+.tabs {
+  background-color: var(--white-bg);
+}
+
 .tabs__input {
   width: 1px;
   height: 1px;
@@ -10,6 +14,12 @@
 
 .tabs__menu {
   display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+
+.tabs__menu::-webkit-scrollbar {
+  display: none;
 }
 
 .tabs__label {
@@ -20,15 +30,23 @@
   font-size: 16px;
   line-height: 1.5;
   font-weight: 400;
-  color: var(--grey-3);
+  color: var(--nav-color);
   transition: color .1s linear;
+  white-space: nowrap;
+}
+
+.tabs__label:last-child {
+  margin-right: 0;
 }
 
 .tabs__label::after {
   content: '';
-  border: 5px solid #000;
+  border: 2px solid var(--active-text-color);
+  border-radius: 1px;
+  background-color: var(--black-bg);
   transform: scale(0);
-  transition: scale .2s linear;
+  transition: transform 300ms ease-in-out;
+  margin-top: 5px;
 }
 
 .tabs__line {
@@ -37,7 +55,12 @@
 
 .tabs__content {
   padding: 50px 0;
-  background-color: var(--grey-5);
+  background-color: var(--main-bg);
+}
+
+.tabs__content--template {
+  padding: 10px 0;
+  background-color: var(--white-bg);
 }
 
 .tabs__list {
@@ -76,72 +99,126 @@
   grid-template-columns: repeat(4, auto);
   grid-template-rows: repeat(3, auto);
   gap: 30px;
+  margin-bottom: 30px;
 }
 
 .tabs__custom-elements {
   display: grid;
-  grid-template-columns: repeat(3, auto);
   grid-template-rows: repeat(3, auto);
+  grid-auto-flow: column;
   gap: 30px;
 }
 
-.tabs__input:hover ~ .container .tab__menu .tab__label {
+.tabs__input:hover ~ .container .tabs__menu .tabs__label {
   cursor: pointer;
 }
 
-#all-tabs:hover ~ .container .tab__menu label[for="all-tabs"].tab__label,
-#elements:hover ~ .container .tab__menu label[for="elements"].tab__label,
-#containers:hover ~ .container .tab__menu label[for="containers"].tab__label,
-#templates:hover ~ .container .tab__menu label[for="templates"].tab__label {
+#tab-1:hover ~ .container .tabs__menu label[for="tab-1"].tabs__label,
+#tab-2:hover ~ .container .tabs__menu label[for="tab-2"].tabs__label,
+#tab-3:hover ~ .container .tabs__menu label[for="tab-3"].tabs__label,
+#tab-4:hover ~ .container .tabs__menu label[for="tab-4"].tabs__label {
   color: var(--grey-4);
 }
 
-#all-tabs:checked ~ .container .tab__menu label[for="all-tabs"].tab__label,
-#elements:checked ~ .container .tab__menu label[for="elements"].tab__label,
-#containers:checked ~ .container .tab__menu label[for="containers"].tab__label,
-#templates:checked ~ .container .tab__menu label[for="templates"].tab__label {
-  color: var(--black);
+#tab-1:checked ~ .container .tabs__menu label[for="tab-1"].tabs__label,
+#tab-2:checked ~ .container .tabs__menu label[for="tab-2"].tabs__label,
+#tab-3:checked ~ .container .tabs__menu label[for="tab-3"].tabs__label,
+#tab-4:checked ~ .container .tabs__menu label[for="tab-4"].tabs__label {
+  color: var(--active-text-color);
 } 
 
-#all-tabs:checked ~ .container .tab__menu label[for="all-tabs"].tab__label::after,
-#elements:checked ~ .container .tab__menu label[for="elements"].tab__label::after,
-#containers:checked ~ .container .tab__menu label[for="containers"].tab__label::after,
-#templates:checked ~ .container .tab__menu label[for="templates"].tab__label::after {
-  transform: scale(0.5);
+#tab-1:checked ~ .container .tabs__menu label[for="tab-1"].tabs__label::after,
+#tab-2:checked ~ .container .tabs__menu label[for="tab-2"].tabs__label::after,
+#tab-3:checked ~ .container .tabs__menu label[for="tab-3"].tabs__label::after,
+#tab-4:checked ~ .container .tabs__menu label[for="tab-4"].tabs__label::after {
+  transform: scale(1);
 }
 
-#all-tabs:checked ~  .tab__content--elements,
-#all-tabs:checked ~  .tab__content--container,
-#all-tabs:checked ~  .tab__content--template {
+#tab-1:hover ~ .container .tabs__menu label[for="tab-1"].tabs__label::after,
+#tab-2:hover ~ .container .tabs__menu label[for="tab-2"].tabs__label::after,
+#tab-3:hover ~ .container .tabs__menu label[for="tab-3"].tabs__label::after,
+#tab-4:hover ~ .container .tabs__menu label[for="tab-4"].tabs__label::after {
+  transform: scale(1);
+}
+
+#tab-1:checked ~  .tabs__content--tab-2,
+#tab-1:checked ~  .tabs__content--tab-3,
+#tab-1:checked ~  .tabs__content--tab-4 {
   display: none;
 }
 
-#elements:checked ~  .tab__content--all-tabs,
-#elements:checked ~  .tab__content--container,
-#elements:checked ~  .tab__content--template {
+#tab-2:checked ~  .tabs__content--tab-1,
+#tab-2:checked ~  .tabs__content--tab-3,
+#tab-2:checked ~  .tabs__content--tab-4 {
   display: none;
 }
 
-#elements:checked ~  .tab__content--elements {
+#tab-2:checked ~  .tabs__content--tab-2 {
   display: block;
 }
 
-#containers:checked ~  .tab__content--all-tabs,
-#containers:checked ~ .tab__content--elements,
-#containers:checked ~ .tab__content--template {
+#tab-3:checked ~ .tabs__content--tab-1,
+#tab-3:checked ~ .tabs__content--tab-2,
+#tab-3:checked ~ .tabs__content--tab-4 {
   display: none;
 }
 
-#containers:checked ~ .tab__content--container {
+#tab-3:checked ~ .tabs__content--tab-3{
   display: block;
 }
 
-#templates:checked ~ .tab__content--all-tabs,
-#templates:checked ~ .tab__content--elements,
-#templates:checked ~ .tab__content--container {
+#tab-4:checked ~ .tabs__content--tab-1,
+#tab-4:checked ~ .tabs__content--tab-2,
+#tab-4:checked ~ .tabs__content--tab-3 {
   display: none;
 }
 
-#templates:checked ~ .tab__content--template {
+#tab-4:checked ~ .tabs__content--tab-4 {
   display: block;
+}
+
+/* Media query */
+
+@media (max-width: 768px) {
+
+  .tabs__content {
+    padding: 40px 0;
+  }
+
+  .tabs__group-buttons {
+    display: grid;
+    grid-column-start: 1;
+    grid-column-end: 6;
+    gap: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  
+  .tabs__label {
+    flex-wrap: nowrap;
+    margin-right: 15px;
+  }
+
+  .tabs__content {
+    padding: 30px 0;
+  }
+
+  .tabs__title {
+    margin: 40px 0;
+    font-size: 20px;
+  }
+
+  .tabs__group-buttons {
+    display: grid;
+    grid-template-columns: repeat(1, auto);
+    grid-template-rows: repeat(2, auto); 
+    gap: 20px;
+  }
+
+  .tabs__custom-elements {
+    display: grid;
+    grid-template-columns: repeat(1, auto);
+    grid-auto-flow: initial;
+  }
 }
